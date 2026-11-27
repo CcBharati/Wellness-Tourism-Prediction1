@@ -13,7 +13,7 @@ st.set_page_config(
 # 1. Title and Description
 st.title("🏖️ Wellness Tourism Package Purchase Predictor")
 st.markdown("""
-Predict whether a customer is likely to purchase the new **Wellness Tourism Package** 
+Predict whether a customer is likely to purchase the new **Wellness Tourism Package**
 based on their profile and sales interaction details.
 """)
 
@@ -53,7 +53,7 @@ def get_user_inputs():
         own_car = st.selectbox("Owns a Car?", [0, 1], format_func=lambda x: "Yes" if x == 1 else "No")
         num_children = st.number_input("Number of Children Below Age 5", min_value=0, max_value=5, value=0)
         pref_star = st.selectbox("Preferred Property Star Rating", [3, 4, 5])
-        
+
         st.subheader("📞 Sales Interaction Details")
         product_pitched = st.selectbox("Product Pitched", ["Basic", "Standard", "Deluxe", "Super Deluxe", "King"])
         pitch_score = st.slider("Pitch Satisfaction Score", 1, 5, 3)
@@ -98,13 +98,13 @@ if st.button("🚀 Predict Purchase Likelihood", type="primary"):
         probability = model.predict_proba(user_df)[0][1]
 
         st.subheader("🎯 Prediction Result")
-        
+
         if prediction == 1:
             st.success(f"**High Potential Customer!** The customer is **likely to purchase** the Wellness Package. (Confidence: {probability:.1%})")
             st.balloons()
         else:
             st.warning(f"**Low Potential Customer.** The customer is **unlikely to purchase** the package. (Confidence: {(1 - probability):.1%})")
-            
+
         st.progress(float(probability), text=f"Purchase Probability: {probability:.1%}")
 
     except Exception as e:

@@ -5,7 +5,7 @@ from sklearn.model_selection import train_test_split
 def main():
     # 1. Define paths
     data_path = "tourism_project/data/tourism.csv"
-    
+
     if not os.path.exists(data_path):
         raise FileNotFoundError(f"Dataset not found at {data_path}. Please check the file path.")
 

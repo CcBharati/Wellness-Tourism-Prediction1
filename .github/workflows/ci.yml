@@ -1,13 +1,14 @@
-name: CI
-
-on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
-
-jobs:
-  build:
+- name: Upload Model and Evaluation Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: wellness-model-and-artifacts
+          path: |
+            best_wellness_model.joblib
+            best_model.pkl
+            models/
+            *.csv
+            *.png
+          if-no-files-found: warn
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
